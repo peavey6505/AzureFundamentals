@@ -1,0 +1,54 @@
+﻿@model List<string>
+@using System.Linq
+
+@{
+    ViewData["Title"] = "Containers";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="mb-3">
+    <a asp-controller="Container" asp-action="CreateNew" class="btn btn-primary">Create New</a>
+</div>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>No containers found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Container Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Select((name, idx) => new { Name = name, Index = idx + 1 }))
+            {
+                <tr>
+                    <td>@item.Index</td>
+                    <td>@item.Name</td>
+                    <td>
+                        <a asp-controller="Container"
+                           asp-action="Manage"
+                           asp-route-containerName="@item.Name"
+                           class="btn btn-sm btn-secondary me-2">Manage</a>
+
+                        <form asp-controller="Container"
+                              asp-action="Delete"
+                              asp-route-containerName="@item.Name"
+                              method="post"
+                              class="d-inline"
+                              onsubmit="return confirm('Delete container @item.Name?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

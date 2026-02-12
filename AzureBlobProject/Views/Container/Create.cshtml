@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Create Container";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-controller="Container" asp-action="Create" method="post" class="w-50">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label for="containerName" class="form-label">Container Name</label>
+        <input type="text" id="containerName" name="containerName" class="form-control" required />
+        <div class="form-text">Enter a valid container name (lowercase, numbers, and hyphens; 3-63 characters).</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-controller="Container" asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+</form>
