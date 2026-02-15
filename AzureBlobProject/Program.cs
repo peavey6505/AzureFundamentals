@@ -10,6 +10,7 @@ namespace AzureBlobProject
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddSingleton(u => new BlobServiceClient(builder.Configuration.GetConnectionString("BlobConnection")));
             builder.Services.AddSingleton<IContainerService, ContainerService>();
+            builder.Services.AddSingleton<IBlobService, BlobService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
