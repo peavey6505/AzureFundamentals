@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBlobProject", "AzureBl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureBlob", "AzureBlob", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureFunction", "AzureFunction", "{B1AD49F5-4B62-4AF8-B583-ECF0E536BD4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctionTangyWeb", "AzureFunctionTangyWeb\AzureFunctionTangyWeb.csproj", "{6DBE7A2F-66D8-479A-9C23-F9F69E0CD88A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TangyAzureFunc", "TangyAzureFunc\TangyAzureFunc.csproj", "{4664CA03-AEF0-4FFE-A736-D4B10E5DA376}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +23,22 @@ Global
 		{2B175A0A-DD29-4DC4-845A-43CD3E40D423}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B175A0A-DD29-4DC4-845A-43CD3E40D423}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B175A0A-DD29-4DC4-845A-43CD3E40D423}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DBE7A2F-66D8-479A-9C23-F9F69E0CD88A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DBE7A2F-66D8-479A-9C23-F9F69E0CD88A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DBE7A2F-66D8-479A-9C23-F9F69E0CD88A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DBE7A2F-66D8-479A-9C23-F9F69E0CD88A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4664CA03-AEF0-4FFE-A736-D4B10E5DA376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4664CA03-AEF0-4FFE-A736-D4B10E5DA376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4664CA03-AEF0-4FFE-A736-D4B10E5DA376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4664CA03-AEF0-4FFE-A736-D4B10E5DA376}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2B175A0A-DD29-4DC4-845A-43CD3E40D423} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{6DBE7A2F-66D8-479A-9C23-F9F69E0CD88A} = {B1AD49F5-4B62-4AF8-B583-ECF0E536BD4A}
+		{4664CA03-AEF0-4FFE-A736-D4B10E5DA376} = {B1AD49F5-4B62-4AF8-B583-ECF0E536BD4A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DE1ACC1D-8A03-4F13-86E9-6556FD041D69}
