@@ -1,3 +1,5 @@
+using Azure.Storage.Blobs;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,6 +11,10 @@ builder.Services.AddHttpClient(); // Register HttpClient for dependency injectio
 //    // You can also set default headers here if needed
 //    // options.DefaultRequestHeaders.Add("Authorization", "Bearer YOUR_TOKEN");
 //});
+
+builder.Services.AddSingleton(u => new BlobServiceClient(builder.Configuration.GetValue<string>("StorageConnection")));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

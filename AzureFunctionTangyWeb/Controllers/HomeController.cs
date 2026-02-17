@@ -1,3 +1,5 @@
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using AzureFunctionTangyWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -10,11 +12,13 @@ namespace AzureFunctionTangyWeb.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly BlobServiceClient _blobService;
 
-        public HomeController(ILogger<HomeController> logger, IHttpClientFactory httpClientFactory)
+        public HomeController(ILogger<HomeController> logger, IHttpClientFactory httpClientFactory, BlobServiceClient blobService)
         {
             _logger = logger;
             _httpClientFactory = httpClientFactory;
+            _blobService = blobService;
         }
 
         public IActionResult Index()
@@ -25,7 +29,7 @@ namespace AzureFunctionTangyWeb.Controllers
         // http://localhost:7129/api/OnSalesUploadWriteToQueue
 
         [HttpPost]
-        public async Task<IActionResult> Index(SalesRequest salesRequest)
+        public async Task<IActionResult> Index(SalesRequest salesRequest, IFormFile file)
         {
             salesRequest.Id = Guid.NewGuid().ToString();
             using var client = _httpClientFactory.CreateClient();
@@ -37,7 +41,21 @@ namespace AzureFunctionTangyWeb.Controllers
                 string returnValue = await response.Content.ReadAsStringAsync();
             }
 
-            
+            if (file != null)
+            {
+                var fileName = salesRequest.Id + Path.GetExtension(file.FileName);
+                BlobContainerClient containerClient = _blobService.GetBlobContainerClient("functionsalesrep");
+                var blobClient = containerClient.GetBlobClient(fileName);
+
+                var httpheaders = new BlobHttpHeaders()
+                {
+                    ContentType = file.ContentType
+                };
+
+                await blobClient.UploadAsync(file.OpenReadStream(), httpheaders);
+            }
+
+
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Privacy()
